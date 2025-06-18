@@ -8,6 +8,7 @@
       font-family: sans-serif;
       text-align: center;
       padding: 30px;
+      background: #f4f8fb;
     }
     img {
       width: 100px;
@@ -30,14 +31,12 @@
       document.getElementById("nama").innerText = "Nama: " + nama;
       document.getElementById("email").innerText = "Email: " + email;
       document.getElementById("foto").src = fotoURL;
-    }
 
-    // Kirim "berhasil" ke Kodular saat halaman selesai dimuat
-    window.onload = function() {
+      // Kirim respon balik ke Kodular bahwa sudah berhasil
       if (window.AppInventor) {
         window.AppInventor.setWebViewString("berhasil");
       }
-    };
+    }
   </script>
 </body>
 </html>
