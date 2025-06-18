@@ -37,6 +37,11 @@
     function setFoto(fotoURL) {
       document.getElementById("foto").src = fotoURL;
     }
+
+    // Memberi sinyal "Berhasil" ke Kodular saat halaman selesai dimuat
+    window.onload = function () {
+      window.AppInventor.setWebViewString("Berhasil");
+    }
   </script>
 </body>
 </html>
