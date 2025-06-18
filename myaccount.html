@@ -1,71 +1,36 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Account - Go-Cycle</title>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <title>Akun Saya</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 30px;
-      background: #f4f4f4;
-      color: #333;
-    }
-    .container {
-      max-width: 400px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      font-family: sans-serif;
       text-align: center;
+      padding: 30px;
     }
     img {
-      border-radius: 50%;
       width: 100px;
-      margin-bottom: 15px;
+      border-radius: 50%;
+      margin-bottom: 10px;
     }
-    h2 {
-      margin: 10px 0 5px;
-    }
-    p {
-      margin: 0;
-      font-size: 0.95em;
-      color: #555;
+    #nama, #email {
+      font-size: 18px;
+      margin: 5px 0;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <img id="user-pic" src="" alt="Foto Profil">
-    <h2 id="user-name">Memuat...</h2>
-    <p id="user-email"></p>
-  </div>
+  <img id="foto" src="" alt="Foto Profil">
+  <div id="nama">Nama: -</div>
+  <div id="email">Email: -</div>
 
   <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDaCu-OA_tD7zyhDMoMTxz0yXhi5G_OuRg",
-      authDomain: "ojeka-ba255.firebaseapp.com",
-      projectId: "ojeka-ba255",
-      storageBucket: "ojeka-ba255.appspot.com",
-      messagingSenderId: "639980533353",
-      appId: "1:639980533353:web:6c742f836c85445f8cd4f8"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        document.getElementById('user-name').textContent = user.displayName || 'Pengguna';
-        document.getElementById('user-email').textContent = user.email || '';
-        document.getElementById('user-pic').src = user.photoURL || 'https://via.placeholder.com/100';
-      } else {
-        location.href = "login.html"; // redirect jika belum login
-      }
-    });
+    function setUserData(nama, email, fotoURL) {
+      document.getElementById("nama").innerText = "Nama: " + nama;
+      document.getElementById("email").innerText = "Email: " + email;
+      document.getElementById("foto").src = fotoURL;
+    }
   </script>
 </body>
 </html>
