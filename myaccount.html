@@ -1,75 +1,48 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Akun Saya - Go-Cycle</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Account - Go-Cycle</title>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      margin: 0;
       font-family: 'Poppins', sans-serif;
-      background: #f4faff;
-      color: #222;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .card {
-      background: #fff;
+      margin: 0;
       padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      max-width: 420px;
-      width: 100%;
+      background: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
       text-align: center;
     }
-    .card img {
-      width: 100px;
+    img {
       border-radius: 50%;
+      width: 100px;
       margin-bottom: 15px;
-      border: 3px solid #007aff;
     }
-    .card h2 {
+    h2 {
       margin: 10px 0 5px;
-      font-size: 1.6em;
-      color: #007aff;
     }
-    .card p {
+    p {
+      margin: 0;
       font-size: 0.95em;
       color: #555;
-      margin: 4px 0;
-    }
-    .card button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1em;
-      background: #007aff;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .card button:hover {
-      background: #005fc1;
     }
   </style>
 </head>
 <body>
-
-  <div class="card">
-    <img src="https://cdn-icons-png.flaticon.com/128/149/149071.png" alt="User Profile" id="userPhoto">
-    <h2 id="userName">Nama Pengguna</h2>
-    <p><strong>Email:</strong> <span id="userEmail">memuat...</span></p>
-    <p><strong>UID:</strong> <span id="userUID">memuat...</span></p>
-    <button onclick="logout()">Keluar</button>
+  <div class="container">
+    <img id="user-pic" src="" alt="Foto Profil">
+    <h2 id="user-name">Memuat...</h2>
+    <p id="user-email"></p>
   </div>
 
   <script>
@@ -77,31 +50,22 @@
       apiKey: "AIzaSyDaCu-OA_tD7zyhDMoMTxz0yXhi5G_OuRg",
       authDomain: "ojeka-ba255.firebaseapp.com",
       projectId: "ojeka-ba255",
-      storageBucket: "ojeka-ba255.firebasestorage.app",
+      storageBucket: "ojeka-ba255.appspot.com",
       messagingSenderId: "639980533353",
-      appId: "1:639980533353:android:6c742f836c85445f8cd4f8"
+      appId: "1:639980533353:web:6c742f836c85445f8cd4f8"
     };
+
     firebase.initializeApp(firebaseConfig);
 
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        document.getElementById('userEmail').textContent = user.email;
-        document.getElementById('userUID').textContent = user.uid;
-        document.getElementById('userName').textContent = user.displayName || 'Pengguna';
-        document.getElementById('userPhoto').src = user.photoURL || 'https://cdn-icons-png.flaticon.com/128/149/149071.png';
+        document.getElementById('user-name').textContent = user.displayName || 'Pengguna';
+        document.getElementById('user-email').textContent = user.email || '';
+        document.getElementById('user-pic').src = user.photoURL || 'https://via.placeholder.com/100';
       } else {
-        alert("Silakan login terlebih dahulu.");
-        window.location.href = "login.html";
+        location.href = "login.html"; // redirect jika belum login
       }
     });
-
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        alert("Berhasil keluar.");
-        window.location.href = "login.html";
-      });
-    }
   </script>
-
 </body>
 </html>
