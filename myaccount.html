@@ -26,9 +26,15 @@
   <div id="email">Email: -</div>
 
   <script>
-    function setUserData(nama, email, fotoURL) {
+    function setNama(nama) {
       document.getElementById("nama").innerText = "Nama: " + nama;
+    }
+
+    function setEmail(email) {
       document.getElementById("email").innerText = "Email: " + email;
+    }
+
+    function setFoto(fotoURL) {
       document.getElementById("foto").src = fotoURL;
     }
   </script>
