@@ -26,22 +26,18 @@
   <div id="email">Email: -</div>
 
   <script>
-    function setNama(nama) {
+    function setUserData(nama, email, fotoURL) {
       document.getElementById("nama").innerText = "Nama: " + nama;
-    }
-
-    function setEmail(email) {
       document.getElementById("email").innerText = "Email: " + email;
-    }
-
-    function setFoto(fotoURL) {
       document.getElementById("foto").src = fotoURL;
     }
 
-    // Memberi sinyal "Berhasil" ke Kodular saat halaman selesai dimuat
-    window.onload = function () {
-      window.AppInventor.setWebViewString("Berhasil");
-    }
+    // Kirim "berhasil" ke Kodular saat halaman selesai dimuat
+    window.onload = function() {
+      if (window.AppInventor) {
+        window.AppInventor.setWebViewString("berhasil");
+      }
+    };
   </script>
 </body>
 </html>
